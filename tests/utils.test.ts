@@ -1,4 +1,5 @@
 import { StorageManager, CryptoUtils, DOMUtils, Logger } from '../src/utils';
+import browser from 'webextension-polyfill';
 
 describe('StorageManager', () => {
   beforeEach(() => {
@@ -6,7 +7,7 @@ describe('StorageManager', () => {
   });
 
   it('should get value from storage', async () => {
-    (global.browser.storage.local.get as jest.Mock).mockResolvedValue({
+    (browser.storage.local.get as jest.Mock).mockResolvedValue({
       testKey: 'testValue',
     });
 
@@ -15,7 +16,7 @@ describe('StorageManager', () => {
   });
 
   it('should return null for non-existent key', async () => {
-    (global.browser.storage.local.get as jest.Mock).mockResolvedValue({});
+    (browser.storage.local.get as jest.Mock).mockResolvedValue({});
 
     const result = await StorageManager.get('nonExistent');
     expect(result).toBeNull();
@@ -24,13 +25,13 @@ describe('StorageManager', () => {
   it('should set value in storage', async () => {
     await StorageManager.set('testKey', 'testValue');
     
-    expect(global.browser.storage.local.set).toHaveBeenCalledWith({
+    expect(browser.storage.local.set).toHaveBeenCalledWith({
       testKey: 'testValue',
     });
   });
 
   it('should get feature state', async () => {
-    (global.browser.storage.local.get as jest.Mock).mockResolvedValue({
+    (browser.storage.local.get as jest.Mock).mockResolvedValue({
       feature_testFeature: false,
     });
 
@@ -39,7 +40,7 @@ describe('StorageManager', () => {
   });
 
   it('should default to enabled for new features', async () => {
-    (global.browser.storage.local.get as jest.Mock).mockResolvedValue({});
+    (browser.storage.local.get as jest.Mock).mockResolvedValue({});
 
     const state = await StorageManager.getFeatureState('newFeature');
     expect(state).toBe(true);

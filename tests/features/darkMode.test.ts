@@ -1,4 +1,5 @@
 import { DarkModeFeature } from '../../src/features/darkMode/darkMode';
+import browser from 'webextension-polyfill';
 
 describe('DarkModeFeature', () => {
   let feature: DarkModeFeature;
@@ -23,7 +24,7 @@ describe('DarkModeFeature', () => {
   });
 
   it('should initialize without errors', async () => {
-    (global.browser.storage.local.get as jest.Mock).mockResolvedValue({
+    (browser.storage.local.get as jest.Mock).mockResolvedValue({
       feature_darkMode: true,
     });
 
@@ -45,7 +46,7 @@ describe('DarkModeFeature', () => {
   });
 
   it('should inject styles when applying dark mode', async () => {
-    (global.browser.storage.local.get as jest.Mock).mockResolvedValue({
+    (browser.storage.local.get as jest.Mock).mockResolvedValue({
       feature_darkMode: true,
     });
 

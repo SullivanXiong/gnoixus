@@ -20,7 +20,7 @@ export class StorageManager {
   static async get<T>(key: string): Promise<T | null> {
     try {
       const result = await browser.storage.local.get(key);
-      return result[key] || null;
+      return result[key] !== undefined ? result[key] : null;
     } catch (error) {
       console.error(`Error getting ${key} from storage:`, error);
       return null;

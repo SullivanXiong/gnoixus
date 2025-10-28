@@ -4,7 +4,7 @@
  */
 
 // Mock browser APIs
-global.browser = {
+(global as any).browser = {
   storage: {
     local: {
       get: jest.fn(),
@@ -23,10 +23,10 @@ global.browser = {
     query: jest.fn(),
     sendMessage: jest.fn(),
   },
-} as any;
+};
 
 // Mock chrome APIs (alias for browser)
-global.chrome = global.browser as any;
+(global as any).chrome = (global as any).browser;
 
 // Mock crypto API
 Object.defineProperty(global, 'crypto', {
