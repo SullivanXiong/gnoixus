@@ -1,0 +1,35 @@
+# Development files
+src/
+tests/
+.github/
+
+# Configuration files
+tsconfig.json
+webpack.config.js
+jest.config.js
+.eslintrc.js
+.prettierrc
+
+# Documentation (keep only README)
+BUILD.md
+CONTRIBUTING.md
+QUICKSTART.md
+TODO.md
+CHANGELOG.md
+
+# Git files
+.git/
+.gitignore
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log
