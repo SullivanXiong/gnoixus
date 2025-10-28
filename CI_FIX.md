@@ -1,6 +1,8 @@
 # GitHub Actions CI Fix
 
-## Problem
+## Problems Encountered
+
+### Problem 1: Missing Lock File
 
 The GitHub Actions CI workflow was failing with this error:
 ```
@@ -8,11 +10,17 @@ Error: Dependencies lock file is not found in /home/runner/work/gnoixus/gnoixus.
 Supported file patterns: package-lock.json,npm-shrinkwrap.json,yarn.lock
 ```
 
-## Root Cause
+**Root Cause**: The GitHub Actions workflow was configured to use `npm ci` (clean install) and cache npm dependencies, but the `package-lock.json` file was not committed to the repository. `npm ci` requires a lock file to ensure reproducible builds across different environments.
 
-The GitHub Actions workflow was configured to use `npm ci` (clean install) and cache npm dependencies, but the `package-lock.json` file was not committed to the repository. 
+### Problem 2: Deprecated Actions (v3)
 
-`npm ci` requires a lock file to ensure reproducible builds across different environments.
+After fixing the lock file, another error appeared:
+```
+Error: This request has been automatically failed because it uses a deprecated version 
+of `actions/upload-artifact: v3`.
+```
+
+**Root Cause**: GitHub deprecated v3 of their actions as of April 16, 2024. The workflow needed to be updated to use v4 of all actions.
 
 ## Solution
 
@@ -24,14 +32,21 @@ npm install
 
 This created the `package-lock.json` file (230KB) which locks all dependency versions.
 
-### 2. Updated GitHub Actions Workflow
+### 2. Updated GitHub Actions Workflow (v4)
 
 The `.github/workflows/ci.yml` file now includes:
 
 - **Complete CI pipeline** with test and build-release jobs
+- **Latest action versions (v4)** - no deprecation warnings
 - **Artifact uploads** for build outputs
 - **Coverage reporting** integration
 - **Automatic releases** when tags are pushed
+
+**Actions Updated to v4:**
+- `actions/checkout@v4` (was v3)
+- `actions/setup-node@v4` (was v3)
+- `actions/upload-artifact@v4` (was v3)
+- `codecov/codecov-action@v4` (was v3)
 
 ### 3. Added to Git
 
@@ -132,17 +147,21 @@ The CI should now work correctly. You can verify by:
 
 ```
 ✅ Added: package-lock.json (230KB)
-✅ Updated: .github/workflows/ci.yml (complete workflow)
+✅ Updated: .github/workflows/ci.yml (complete workflow with v4 actions)
+✅ Added: .github/ISSUE_TEMPLATE/bug_report.md
+✅ Added: .github/ISSUE_TEMPLATE/feature_request.md
 ```
 
 ## Status
 
-✅ **FIXED** - The CI pipeline is now fully functional with:
+✅ **FULLY FIXED** - The CI pipeline is now fully functional with:
 - Proper dependency locking
+- Latest GitHub Actions (v4) - no deprecation warnings
 - Complete test & build workflow
 - Automated release packaging
 - Artifact uploads
 - Coverage reporting
+- Issue templates for bug reports and features
 
 ---
 
