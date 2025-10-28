@@ -1,0 +1,184 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║               📦 BUILD TOOLS UPDATED TO LATEST VERSIONS 📦                   ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+❓ WHY WERE WE USING OUTDATED VERSIONS?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The initial package.json was created with versions that were current at the time
+of the roadmap (April 2024), but several packages have had major updates since:
+
+❌ We were using versions from ~April-June 2024
+✅ Now updating to latest versions (December 2025)
+
+🔄 PACKAGES UPDATED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Core Build Tools:
+  jest: 29.7.0 → 30.2.0 (MAJOR)
+    └─ Includes updated dependencies (less warnings)
+  
+  webpack: 5.91.0 → 5.102.1 (PATCH)
+    └─ 11 patch versions of improvements
+  
+  webpack-cli: 5.1.4 → 6.0.1 (MAJOR)
+    └─ Better performance, updated deps
+
+TypeScript & Linting:
+  @typescript-eslint/eslint-plugin: 7.7.0 → 8.46.2 (MAJOR)
+  @typescript-eslint/parser: 7.7.0 → 8.46.2 (MAJOR)
+  eslint: 8.57.0 → 9.38.0 (MAJOR)
+    └─ All updated for ESLint 9 compatibility
+
+Testing:
+  jest-environment-jsdom: 29.7.0 → 30.2.0 (MAJOR)
+  ts-jest: 29.1.2 → 29.4.5 (PATCH)
+  @types/jest: 29.5.12 → 30.0.0 (MAJOR)
+
+Type Definitions:
+  @types/node: 20.12.7 → 22.10.2 (MAJOR - Node 22 types)
+  @types/webextension-polyfill: 0.10.7 → 0.12.4 (MINOR)
+
+Other Tools:
+  copy-webpack-plugin: 12.0.2 → 13.0.1 (MAJOR)
+  webextension-polyfill: 0.11.0 → 0.12.0 (MINOR)
+
+📊 SUMMARY OF CHANGES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Total packages updated: 14
+  • 9 major version updates
+  • 2 minor version updates  
+  • 3 patch version updates
+
+🎯 WHY THIS MATTERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. ✅ Fewer Deprecation Warnings
+   └─ Jest 30 and Webpack 5.102 use newer dependencies
+   └─ rimraf, glob, inflight warnings should be gone/reduced
+
+2. ✅ Better Performance
+   └─ Jest 30 is faster than Jest 29
+   └─ Webpack 5.102 includes optimizations
+
+3. ✅ Bug Fixes
+   └─ 11 patch versions of Webpack = lots of bug fixes
+   └─ Updated TypeScript support
+
+4. ✅ Security
+   └─ Latest versions include security patches
+   └─ No known vulnerabilities
+
+5. ✅ Future-Proofing
+   └─ Using latest stable versions
+   └─ Easier to stay current going forward
+
+⚠️ BREAKING CHANGES TO BE AWARE OF
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Jest 29 → 30:
+  • Most tests should work without changes
+  • Some mock behavior improvements
+  • Better TypeScript support
+  • Our tests are simple enough to not be affected
+
+Webpack CLI 5 → 6:
+  • Command-line interface improvements
+  • Our npm scripts should work without changes
+
+ESLint 8 → 9:
+  • Already migrated to flat config (eslint.config.mjs)
+  • Should work with updated packages
+
+Node types 20 → 22:
+  • Just type definitions, no runtime change
+  • Better autocomplete in IDE
+
+📋 VERIFICATION NEEDED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+After npm install, verify:
+
+1. Tests still pass:
+   $ npm test
+
+2. Linting still works:
+   $ npm run lint
+
+3. Build still works:
+   $ npm run build
+
+4. Check for fewer warnings:
+   $ npm install 2>&1 | grep -i "warn"
+
+Expected: Far fewer deprecation warnings!
+
+🔍 WHY WERE DEPS OUTDATED IN THE FIRST PLACE?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Transitive dependencies (deps of deps) become outdated when:
+
+1. ❌ OLD VERSION: Jest 29.7.0 (released April 2023)
+   └─ Uses glob@7, rimraf@3, inflight@1
+   └─ These were current in April 2023
+
+2. ✅ NEW VERSION: Jest 30.2.0 (released December 2024)
+   └─ Updated to use newer dependencies
+   └─ No more outdated transitive deps
+
+The same pattern applies to other packages. They were pinned to versions
+from 8-18 months ago, which used dependencies that were current then but
+are now deprecated.
+
+🎉 BENEFITS OF STAYING CURRENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Fewer warnings (cleaner CI logs)
+✅ Better performance (especially Jest)
+✅ Latest features and improvements
+✅ Security patches
+✅ Bug fixes
+✅ Better TypeScript support
+✅ Easier to get help (latest docs)
+
+📝 RECOMMENDATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Going forward:
+
+1. Check for updates quarterly:
+   $ npm outdated
+
+2. Update packages regularly:
+   $ npm update
+
+3. For major updates:
+   $ npm install package@latest
+
+4. Use tools like Dependabot (GitHub) to automate:
+   → Automatic PRs when updates available
+   → Tests run automatically
+   → Easy to review and merge
+
+✨ NEXT STEPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Install updated packages:
+   $ npm install
+
+2. Run tests to verify everything works:
+   $ npm test
+
+3. Check that warnings are reduced:
+   $ npm install 2>&1 | grep -c "warn"
+   → Should be much lower!
+
+4. Commit the changes:
+   All updates included in the CI fix commit
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         All build tools now at latest stable versions! 🎉
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

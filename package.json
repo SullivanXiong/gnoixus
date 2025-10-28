@@ -1,0 +1,50 @@
+{
+  "name": "gnoixus",
+  "version": "1.0.0",
+  "description": "A modular multi-tool browser extension with dark mode, linter/formatter, GitHub search, and password manager",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development --watch",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write src/**/*.ts"
+  },
+  "keywords": [
+    "browser-extension",
+    "chrome-extension",
+    "firefox-addon",
+    "dark-mode",
+    "linter",
+    "formatter",
+    "github-search",
+    "password-manager"
+  ],
+  "author": "Gnoixus Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chrome": "^0.1.27",
+    "@types/crypto-js": "^4.2.2",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.9.2",
+    "@types/webextension-polyfill": "^0.12.4",
+    "@typescript-eslint/eslint-plugin": "^8.46.2",
+    "@typescript-eslint/parser": "^8.46.2",
+    "copy-webpack-plugin": "^13.0.1",
+    "css-loader": "^7.1.2",
+    "eslint": "^9.38.0",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0",
+    "prettier": "^3.6.2",
+    "style-loader": "^4.0.0",
+    "ts-jest": "^29.4.5",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.3",
+    "webpack": "^5.102.1",
+    "webpack-cli": "^6.0.1",
+    "webextension-polyfill": "^0.12.0"
+  },
+  "dependencies": {
+    "crypto-js": "^4.2.0"
+  }
+}

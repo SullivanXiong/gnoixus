@@ -1,0 +1,38 @@
+{
+  "manifest_version": 2,
+  "name": "Gnoixus",
+  "version": "1.0.0",
+  "description": "A modular multi-tool browser extension with dark mode, code formatter, GitHub search, and password manager",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": [
+    "storage",
+    "activeTab",
+    "contextMenus",
+    "tabs",
+    "https://api.github.com/*"
+  ],
+  "web_accessible_resources": ["workers/*"]
+}

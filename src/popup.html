@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gnoixus - Multi-Tool Extension</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🛠️ Gnoixus</h1>
+      <span id="version" class="version"></span>
+    </header>
+
+    <main>
+      <!-- Dark Mode Feature -->
+      <section class="feature">
+        <div class="feature-header">
+          <div class="feature-title">
+            <span class="feature-icon">🌙</span>
+            <h3>Dark Mode</h3>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="darkMode-toggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="feature-content">
+          <div class="feature-section">
+            <label class="intensity-label">
+              Intensity:
+              <input type="range" id="dark-mode-intensity" min="0.5" max="1" step="0.1" value="0.9">
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Linter/Formatter Feature -->
+      <section class="feature">
+        <div class="feature-header">
+          <div class="feature-title">
+            <span class="feature-icon">✨</span>
+            <h3>Code Formatter</h3>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="linterFormatter-toggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="feature-content">
+          <div class="feature-section">
+            <button id="manual-lint-btn" class="action-btn">Format Current Page</button>
+            <label class="checkbox-label">
+              <input type="checkbox" id="auto-format-check" checked>
+              Auto-format on detection
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- GitHub Search Feature -->
+      <section class="feature">
+        <div class="feature-header">
+          <div class="feature-title">
+            <span class="feature-icon">🔍</span>
+            <h3>GitHub Search</h3>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="githubSearch-toggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="feature-content">
+          <div class="feature-section github-search">
+            <div class="search-controls">
+              <input 
+                type="text" 
+                id="github-query" 
+                placeholder="Search GitHub..."
+                class="search-input"
+              >
+              <select id="github-type" class="search-type">
+                <option value="repositories">Repos</option>
+                <option value="users">Users</option>
+              </select>
+              <button id="github-search-btn" class="action-btn">Search</button>
+            </div>
+            <div id="github-results" class="search-results"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Password Manager Feature -->
+      <section class="feature">
+        <div class="feature-header">
+          <div class="feature-title">
+            <span class="feature-icon">🔐</span>
+            <h3>Password Manager</h3>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="passwordManager-toggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="feature-content">
+          <div class="feature-section password-manager">
+            <!-- Unlock Section -->
+            <div id="pw-unlock-section" class="pw-section">
+              <p class="pw-warning">⚠️ Basic demo - not production-ready</p>
+              <input type="password" id="pw-master-key" placeholder="Master Key (min 8 chars)" class="pw-input">
+              <button id="pw-unlock-btn" class="action-btn">Unlock</button>
+            </div>
+            
+            <!-- Main Section (hidden by default) -->
+            <div id="pw-main-section" class="pw-section" style="display: none;">
+              <button id="pw-lock-btn" class="action-btn secondary">🔒 Lock</button>
+              
+              <h4>Add Password</h4>
+              <form id="pw-add-form">
+                <input type="text" id="pw-site" placeholder="Website" required class="pw-input">
+                <input type="text" id="pw-username" placeholder="Username" required class="pw-input">
+                <input type="password" id="pw-password" placeholder="Password" required class="pw-input">
+                <div class="button-group">
+                  <button type="button" id="pw-generate-btn" class="action-btn secondary">Generate</button>
+                  <button type="submit" class="action-btn">Save</button>
+                </div>
+              </form>
+              
+              <h4>Saved Passwords</h4>
+              <div id="pw-list" class="pw-list"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Gnoixus - Your Multi-Tool Browser Extension</p>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
